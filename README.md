@@ -3,6 +3,13 @@
 ## 简介
 Spring Boot API Project Seed 是一个基于Spring Boot & MyBatis的种子项目，用于快速构建中小型API、RESTful API项目，该种子项目已经有过多个真实项目的实践，稳定、简单、快速，使我们摆脱那些重复劳动，专注于业务代码的编写，减少加班。下面是一个简单的使用演示，看如何基于本项目在短短几十秒钟内实现一套简单的API，并运行提供服务。
 
+原项目[fork from](https://github.com/lihengming/spring-boot-api-project-seed)是使用maven管理依赖的,现在添加了gradle 支持
+
+## 使用idea导入gradle项目
+- idea 使用教程 [有道有笔记系列总结](http://note.youdao.com/noteshare?id=1f3dfa49068766d3ecec91fb0cb6d8b0)
+- idea 导入gradle 项目 [导入gradle项目](http://note.youdao.com/noteshare?id=7c0da6b7aa6b2f943e0bf664c8e70238)
+- eclipse code formatter插件 [代码格式化插件](http://note.youdao.com/noteshare?id=945f9d83e1cc755aee1b27d89bf5cdab)
+
 [![请选择超清](https://raw.githubusercontent.com/lihengming/java-codes/master/shared-resources/github-images/project-example-youku.png)](http://v.youku.com/v_show/id_XMjg1NjYwNDgxNg==.html?spm=a2h3j.8428770.3416059.1)
 ## 特征&提供
 - 最佳实践的项目结构、配置文件、精简的POM（[查看项目结构图](https://github.com/lihengming/java-codes/blob/master/shared-resources/github-images/project-struct.png)）
@@ -40,6 +47,11 @@ Spring Boot API Project Seed 是一个基于Spring Boot & MyBatis的种子项目
 - Druid Spring Boot Starter（[查看官方中文文档](https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter/)）
 - Fastjson（[查看官方中文文档](https://github.com/Alibaba/fastjson/wiki/%E9%A6%96%E9%A1%B5)）
 - 其他略
+
+## 构建普通spring boot项目推荐
+- spring 初始化器 [初始化器](http://start.spring.io/) 
+- 我的spring boot总结 [有道云笔记](http://note.youdao.com/noteshare?id=3b96b4b29619b5fbd05f4f5cd0d3af02)
+- 我的其他基于gradle spring boot项目参考 [spring mybatis](https://github.com/javastar920905/springmybatis)   [java-demo](https://github.com/javastar920905/java-demo)
 
 ## License
 无，纯粹开源分享，感谢大家 [Star](https://github.com/lihengming/spring-boot-api-project-seed/stargazers) & [Fork](https://github.com/lihengming/spring-boot-api-project-seed/network/members) 的支持。
