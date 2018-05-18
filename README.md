@@ -5,6 +5,11 @@ Spring Boot API Project Seed 是一个基于Spring Boot & MyBatis的种子项目
 
 原项目[fork from](https://github.com/lihengming/spring-boot-api-project-seed)是使用maven管理依赖的,现在添加了gradle 支持
 
+## 补充: 分支说明
+[master 分支](https://github.com/java-frame/spring-boot-api-project-seed) 纯springboot +mybatis 手脚架项目,当前readme文档基于mater分支做介绍
+[aijava 分支](https://github.com/java-frame/spring-boot-api-project-seed/tree/aijava) 在master基础上,集成了腾讯ai功能
+
+
 ## 使用idea导入gradle项目
 - idea 使用教程 [有道有笔记系列总结](http://note.youdao.com/noteshare?id=1f3dfa49068766d3ecec91fb0cb6d8b0)
 - idea 导入gradle 项目 [导入gradle项目](http://note.youdao.com/noteshare?id=7c0da6b7aa6b2f943e0bf664c8e70238)
