@@ -10,18 +10,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.List;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
 * @author  ${author} on ${date}.
 */
+@Api(tags="${modelNameUpperCamel}管理")
 @RestController
 @RequestMapping("${baseRequestMapping}")
 public class ${modelNameUpperCamel}Controller {
-    @Resource
+    @Autowired
     private ${modelNameUpperCamel}Service ${modelNameLowerCamel}Service;
 
+    @ApiOperation("新增用户")
     @PostMapping("/add")
     public Result add(${modelNameUpperCamel} ${modelNameLowerCamel}) {
         ${modelNameLowerCamel}Service.save(${modelNameLowerCamel});
@@ -40,13 +44,15 @@ public class ${modelNameUpperCamel}Controller {
         return ResultGenerator.genSuccessResult();
     }
 
-    @PostMapping("/detail")
+    @ApiOperation("${modelNameUpperCamel}详情")
+    @GetMapping("/detail")
     public Result detail(@RequestParam Integer id) {
         ${modelNameUpperCamel} ${modelNameLowerCamel} = ${modelNameLowerCamel}Service.findById(id);
         return ResultGenerator.genSuccessResult(${modelNameLowerCamel});
     }
 
-    @PostMapping("/list")
+    @ApiOperation("${modelNameUpperCamel}列表")
+    @GetMapping("/list")
     public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
         List<${modelNameUpperCamel}> list = ${modelNameLowerCamel}Service.findAll();

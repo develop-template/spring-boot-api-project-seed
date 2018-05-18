@@ -7,6 +7,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +26,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    @Resource
+    @Autowired
     private UserService userService;
 
     @ApiOperation("创建用户")
@@ -48,18 +50,18 @@ public class UserController {
     }
 
     @ApiOperation("用户详情")
-    @PostMapping("/detail")
+    @GetMapping("/detail")
     public Result detail(@RequestParam Integer id) {
         User user = userService.findById(id);
         return ResultGenerator.genSuccessResult(user);
     }
 
     @ApiOperation("用户列表")
-    @PostMapping("/list")
+    @GetMapping("/list")
     public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
-        List<User> list = userService.findAll();
-        PageInfo pageInfo = new PageInfo(list);
-        return ResultGenerator.genSuccessResult(pageInfo);
+//        List<User> list = userService.findAll();
+//        PageInfo pageInfo = new PageInfo(list);
+        return ResultGenerator.genSuccessResult(null);
     }
 }
