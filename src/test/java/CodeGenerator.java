@@ -1,9 +1,12 @@
+import com.company.project.configurer.WebMvcConfigurer;
 import com.google.common.base.CaseFormat;
 import freemarker.template.TemplateExceptionHandler;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.*;
 import org.mybatis.generator.internal.DefaultShellCallback;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -17,6 +20,7 @@ import static com.company.project.core.ProjectConstant.*;
  * 代码生成器，根据数据表名称生成对应的Model、Mapper、Service、Controller简化开发。
  */
 public class CodeGenerator {
+    private static final Logger logger = LoggerFactory.getLogger(CodeGenerator.class);
     //JDBC配置，请修改为你项目的实际配置
     private static final String JDBC_URL = "jdbc:mysql://39.106.115.236:3306/paydb";
     private static final String JDBC_USERNAME = "root";
@@ -126,9 +130,9 @@ public class CodeGenerator {
             throw new RuntimeException("生成Model和Mapper失败：" + warnings);
         }
         if (StringUtils.isEmpty(modelName)) modelName = tableNameConvertUpperCamel(tableName);
-        System.out.println(modelName + ".java 生成成功");
-        System.out.println(modelName + "Mapper.java 生成成功");
-        System.out.println(modelName + "Mapper.xml 生成成功");
+        logger.info(modelName + ".java 生成成功");
+        logger.info(modelName + "Mapper.java 生成成功");
+        logger.info(modelName + "Mapper.xml 生成成功");
     }
 
     public static void genService(String tableName, String modelName) {
@@ -149,7 +153,7 @@ public class CodeGenerator {
             }
             cfg.getTemplate("service.ftl").process(data,
                     new FileWriter(file));
-            System.out.println(modelNameUpperCamel + "Service.java 生成成功");
+            logger.info(modelNameUpperCamel + "Service.java 生成成功");
 
             File file1 = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_SERVICE_IMPL + modelNameUpperCamel + "ServiceImpl.java");
             if (!file1.getParentFile().exists()) {
@@ -157,7 +161,7 @@ public class CodeGenerator {
             }
             cfg.getTemplate("service-impl.ftl").process(data,
                     new FileWriter(file1));
-            System.out.println(modelNameUpperCamel + "ServiceImpl.java 生成成功");
+            logger.info(modelNameUpperCamel + "ServiceImpl.java 生成成功");
         } catch (Exception e) {
             throw new RuntimeException("生成Service失败", e);
         }
@@ -183,7 +187,7 @@ public class CodeGenerator {
             //cfg.getTemplate("controller-restful.ftl").process(data, new FileWriter(file));
             cfg.getTemplate("controller.ftl").process(data, new FileWriter(file));
 
-            System.out.println(modelNameUpperCamel + "Controller.java 生成成功");
+            logger.info(modelNameUpperCamel + "Controller.java 生成成功");
         } catch (Exception e) {
             throw new RuntimeException("生成Controller失败", e);
         }
