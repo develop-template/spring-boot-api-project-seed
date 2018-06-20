@@ -17,6 +17,12 @@ public interface Service<T> {
     T findById(Integer id);//通过ID查找
     T findBy(String fieldName, Object value) throws TooManyResultsException; //通过Model中某个成员变量名称（非数据表中column的名称）查找,value需符合unique约束
     List<T> findByIds(String ids);//通过多个ID查找//eg：ids -> “1,2,3,4”
+
+    /**
+     * example 参考文档  https://github.com/abel533/Mapper/wiki/6.example
+     * @param condition 继承自Example
+     * @return
+     */
     List<T> findByCondition(Condition condition);//根据条件查找
     List<T> findAll();//获取所有
 }
