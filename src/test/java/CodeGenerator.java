@@ -141,8 +141,8 @@ public class CodeGenerator {
     if (StringUtils.isEmpty(modelName))
       modelName = tableNameConvertUpperCamel(tableName);
 
-      String javaDomainPath = DOMAIN_PATH + modelName + ".java";
-      deleteAnnotation(javaDomainPath);
+    String javaDomainPath = DOMAIN_PATH + modelName + ".java";
+    deleteAnnotation(javaDomainPath);
 
     logger.info(modelName + ".java 生成成功");
     logger.info(modelName + "Mapper.java 生成成功");
@@ -272,6 +272,9 @@ public class CodeGenerator {
         }
         if (line.contains("@Column") || line.contains("javax.persistence.Column")) {
           // 丢弃@Column注解和导入包
+        } else if (line.contains("@GeneratedValue")) {
+          String shortLine = line.substring(2, line.length());
+          buf.append("  @Id\r\n").append(shortLine).append("\r\n");
         } else if (line.contains("public")) {
           // publicCount =0 时,第一个public 代表类所在行
           // 类名前面添加lombok 注解
