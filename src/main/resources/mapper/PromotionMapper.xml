@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.huacloud.tax.dao.PromotionMapper">
+  <resultMap id="BaseResultMap" type="cn.huacloud.tax.model.Promotion">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="max_people" jdbcType="INTEGER" property="maxPeople" />
+    <result column="begin" jdbcType="TIMESTAMP" property="begin" />
+    <result column="end" jdbcType="TIMESTAMP" property="end" />
+    <result column="promotion_status" jdbcType="TINYINT" property="promotionStatus" />
+  </resultMap>
+</mapper>

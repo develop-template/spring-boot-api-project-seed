@@ -1,4 +1,3 @@
-import com.company.project.configurer.WebMvcConfigurer;
 import com.google.common.base.CaseFormat;
 import freemarker.template.TemplateExceptionHandler;
 import org.apache.commons.lang3.StringUtils;
@@ -17,7 +16,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static com.company.project.core.ProjectConstant.*;
+import static cn.huacloud.tax.core.ProjectConstant.*;
 
 /**
  * 代码生成器，根据数据表名称生成对应的Model、Mapper、Service、Controller简化开发。
@@ -25,9 +24,9 @@ import static com.company.project.core.ProjectConstant.*;
 public class CodeGenerator {
   private static final Logger logger = LoggerFactory.getLogger(CodeGenerator.class);
   // JDBC配置，请修改为你项目的实际配置
-  private static final String JDBC_URL = "jdbc:mysql://39.106.115.236:3306/paydb";
-  private static final String JDBC_USERNAME = "root";
-  private static final String JDBC_PASSWORD = "1qaz2wsx";
+  private static final String JDBC_URL = "jdbc:mysql://dbserver:3306/tax_market_dev";
+  private static final String JDBC_USERNAME = "apple";
+  private static final String JDBC_PASSWORD = "X0dxeLpK";
   private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
   private static final String PROJECT_PATH = System.getProperty("user.dir");// 项目在硬盘上的基础路径
@@ -44,8 +43,17 @@ public class CodeGenerator {
   private static final String AUTHOR = "ouzhx";// @author
   private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());// @date
 
+  /**
+   * todo
+   * @param args
+   */
   public static void main(String[] args) {
-    genCode("user");
+    genCode("promotion");
+    genCode("promotion_action");
+    genCode("promotion_book");
+    genCode("promotion_topic");
+    genCode("promotion_topic_book");
+    genCode("promotion_topic_flow");
     // genCodeByCustomModelName("输入表名","输入自定义Model名称");
   }
 
@@ -142,7 +150,7 @@ public class CodeGenerator {
       modelName = tableNameConvertUpperCamel(tableName);
 
     String javaDomainPath = DOMAIN_PATH + modelName + ".java";
-    deleteAnnotation(javaDomainPath);
+    //deleteAnnotation(javaDomainPath);
 
     logger.info(modelName + ".java 生成成功");
     logger.info(modelName + "Mapper.java 生成成功");
@@ -257,6 +265,7 @@ public class CodeGenerator {
     String line = null;
     StringBuffer buf = new StringBuffer();
 
+    boolean hasIdAnnotation=false;
     try {
       // 根据文件路径创建缓冲输入流
       br = new BufferedReader(new FileReader(fileName));
@@ -270,11 +279,21 @@ public class CodeGenerator {
           // 结束循环,后面的getter setter 方法不再生成
           break;
         }
+        if (line.contains("")){
+          hasIdAnnotation=true;
+          continue;
+        }
+
         if (line.contains("@Column") || line.contains("javax.persistence.Column")) {
           // 丢弃@Column注解和导入包
         } else if (line.contains("@GeneratedValue")) {
-          String shortLine = line.substring(2, line.length());
-          buf.append("  @Id\r\n").append(shortLine).append("\r\n");
+          String shortLine = line.substring(2);
+          if (hasIdAnnotation){
+            buf.append(shortLine).append("\r\n");
+          }else {
+            buf.append("  @Id\r\n").append(shortLine).append("\r\n");
+          }
+
         } else if (line.contains("public")) {
           // publicCount =0 时,第一个public 代表类所在行
           // 类名前面添加lombok 注解

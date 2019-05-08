@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.huacloud.tax.dao.PromotionTopicMapper">
+  <resultMap id="BaseResultMap" type="cn.huacloud.tax.model.PromotionTopic">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="promotion_id" jdbcType="BIGINT" property="promotionId" />
+    <result column="topic_name" jdbcType="VARCHAR" property="topicName" />
+    <result column="topic_type" jdbcType="VARCHAR" property="topicType" />
+    <result column="topic_desc" jdbcType="VARCHAR" property="topicDesc" />
+  </resultMap>
+</mapper>
