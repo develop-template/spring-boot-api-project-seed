@@ -1,0 +1,3 @@
+#inititalizer
+org.springframework.context.ApplicationContextInitializer=cn.javabus.boot.common.initializer.CustomApplicationContextInitializer,\
+cn.javabus.boot.common.util.SpringContextUtil
