@@ -16,13 +16,14 @@ public final class ProjectConstant {
   public static final String MAPPER_INTERFACE_REFERENCE = BASE_PACKAGE + ".core.Mapper";// Mapper插件基础接口的完全限定名
 
 
-  public static final String PROJECT_PATH = System.getProperty("user.dir");// D:\gitrepository\training
+  public static final String PROJECT_PATH = System.getProperty("user.dir")+"/serviceA-provider";// D:\gitrepository\training
   public static final String JAVA_PATH = "/src/main/java"; // java文件路径
   public static final String RESOURCES_PATH = "/src/main/resources";// 资源文件路径
   /**
    * 自定义生成实体类 包路径
    */
-  public static final String DOMAIN_PATH =
-      PROJECT_PATH + JAVA_PATH + "/com/rencaijia/training/domain/";
+  public static final String DOMAIN_PATH =PROJECT_PATH + JAVA_PATH +"/"+MODEL_PACKAGE.replaceAll("\\.", "/")+"/";
+     // PROJECT_PATH + JAVA_PATH + "/com/company/project/model/";
+
 
 }

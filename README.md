@@ -21,6 +21,17 @@ Spring Boot API Project Seed 是一个基于Spring Boot & MyBatis的种子项目
 3. 输入表名，运行```CodeGenerator.main()```方法，生成基础代码（可能需要刷新项目目录才会出来）
 4. 根据业务在基础代码上进行扩展
 5. 对开发环境配置文件```application-dev.properties```进行配置，启动项目，Have Fun！
+
+## 模块介绍
+```
+parent
+    common       通用模块,不依赖spring
+    boot-common  spring boot 项目通用模块,添加项目初始化器
+    provider-api   各个模块api接口 和实体类,推荐目录结构请参考模块下 readme
+    serviceA-provider spring boot mybatis 集成(在考虑把这个模块 做成spring boot mybatis starter)
+ 
+```
+
  
 ## 开发建议
 - 表名，建议使用小写，多个单词使用下划线拼接

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.MsgMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.Msg">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="m_type" jdbcType="INTEGER" property="mType" />
+    <result column="ywid" jdbcType="BIGINT" property="ywid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="readed" jdbcType="TINYINT" property="readed" />
+    <result column="deleted" jdbcType="TINYINT" property="deleted" />
+    <result column="priority" jdbcType="TINYINT" property="priority" />
+    <result column="category" jdbcType="TINYINT" property="category" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="m_page" jdbcType="TINYINT" property="mPage" />
+    <result column="yw_no" jdbcType="VARCHAR" property="ywNo" />
+    <result column="short_desc" jdbcType="VARCHAR" property="shortDesc" />
+    <result column="read_count" jdbcType="BIGINT" property="readCount" />
+    <result column="push_count" jdbcType="BIGINT" property="pushCount" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="push_to" jdbcType="VARCHAR" property="pushTo" />
+    <result column="push_way" jdbcType="VARCHAR" property="pushWay" />
+    <result column="push_time" jdbcType="TIMESTAMP" property="pushTime" />
+    <result column="push_status" jdbcType="TINYINT" property="pushStatus" />
+  </resultMap>
+</mapper>

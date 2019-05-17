@@ -1,4 +1,4 @@
-import com.company.project.configurer.WebMvcConfigurer;
+import com.company.project.core.ProjectConstant;
 import com.google.common.base.CaseFormat;
 import freemarker.template.TemplateExceptionHandler;
 import org.apache.commons.lang3.StringUtils;
@@ -8,12 +8,7 @@ import org.mybatis.generator.internal.DefaultShellCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -21,16 +16,18 @@ import static com.company.project.core.ProjectConstant.*;
 
 /**
  * 代码生成器，根据数据表名称生成对应的Model、Mapper、Service、Controller简化开发。
+ *
+ * 改动CodeGenerator 类的配置 需要 mvn clean install才能生效
  */
 public class CodeGenerator {
   private static final Logger logger = LoggerFactory.getLogger(CodeGenerator.class);
   // JDBC配置，请修改为你项目的实际配置
-  private static final String JDBC_URL = "jdbc:mysql://39.106.115.236:3306/paydb";
-  private static final String JDBC_USERNAME = "root";
-  private static final String JDBC_PASSWORD = "1qaz2wsx";
+  private static final String JDBC_URL = "jdbc:mysql://dbserver:3306/tax_market_dev?useSSL=false&characterEncoding=utf8";
+  private static final String JDBC_USERNAME = "";
+  private static final String JDBC_PASSWORD = "";
   private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
-  private static final String PROJECT_PATH = System.getProperty("user.dir");// 项目在硬盘上的基础路径
+  private static final String PROJECT_PATH = ProjectConstant.PROJECT_PATH;// 项目在硬盘上的基础路径
   private static final String TEMPLATE_FILE_PATH =
       PROJECT_PATH + "/src/test/resources/generator/template";// 模板位置
 
@@ -45,7 +42,7 @@ public class CodeGenerator {
   private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());// @date
 
   public static void main(String[] args) {
-    genCode("user");
+    genCode("msg");
     // genCodeByCustomModelName("输入表名","输入自定义Model名称");
   }
 
@@ -264,6 +261,10 @@ public class CodeGenerator {
       // 循环读取文件的每一行, 对需要修改的行进行修改, 放入缓冲对象中
       int publicCount = 0;
       while ((line = br.readLine()) != null) {
+        if (line.contains("@Id")){
+          //丢弃@Id
+          continue;
+        }
         if (line.contains("public") && publicCount > 0) {
           buf.append("} ");
           // 通过第二个public 来确定 getter setter 方法的开始位置
@@ -274,7 +275,9 @@ public class CodeGenerator {
           // 丢弃@Column注解和导入包
         } else if (line.contains("@GeneratedValue")) {
           String shortLine = line.substring(2, line.length());
-          buf.append("  @Id\r\n").append(shortLine).append("\r\n");
+          if (buf.indexOf("@Id")<0){
+            buf.append("  @Id\r\n").append(shortLine).append("\r\n");
+          }
         } else if (line.contains("public")) {
           // publicCount =0 时,第一个public 代表类所在行
           // 类名前面添加lombok 注解
