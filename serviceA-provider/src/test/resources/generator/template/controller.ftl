@@ -23,7 +23,7 @@ public class ${modelNameUpperCamel}Controller {
     @Autowired
     private ${modelNameUpperCamel}Service ${modelNameLowerCamel}Service;
 
-    @ApiOperation("新增用户")
+    @ApiOperation("新增${modelNameUpperCamel}")
     @PostMapping("/add")
     public Result add(${modelNameUpperCamel} ${modelNameLowerCamel}) {
         ${modelNameLowerCamel}Service.save(${modelNameLowerCamel});

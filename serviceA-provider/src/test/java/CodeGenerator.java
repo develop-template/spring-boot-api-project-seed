@@ -23,8 +23,8 @@ public class CodeGenerator {
   private static final Logger logger = LoggerFactory.getLogger(CodeGenerator.class);
   // JDBC配置，请修改为你项目的实际配置
   private static final String JDBC_URL = "jdbc:mysql://dbserver:3306/tax_market_dev?useSSL=false&characterEncoding=utf8";
-  private static final String JDBC_USERNAME = "";
-  private static final String JDBC_PASSWORD = "";
+  private static final String JDBC_USERNAME = "apple";
+  private static final String JDBC_PASSWORD = "X0dxeLpK";
   private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
   private static final String PROJECT_PATH = ProjectConstant.PROJECT_PATH;// 项目在硬盘上的基础路径

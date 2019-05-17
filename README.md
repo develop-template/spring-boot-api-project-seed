@@ -29,7 +29,6 @@ parent
     boot-common  spring boot 项目通用模块,添加项目初始化器
     provider-api   各个模块api接口 和实体类,推荐目录结构请参考模块下 readme
     serviceA-provider spring boot mybatis 集成(在考虑把这个模块 做成spring boot mybatis starter)
- 
 ```
 
  
